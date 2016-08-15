@@ -8,12 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		A2E70FF31D6238B9009270F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E70FF21D6238B9009270F7 /* AppDelegate.swift */; };
-		A2E70FF51D6238B9009270F7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E70FF41D6238B9009270F7 /* ViewController.swift */; };
 		A2E70FF81D6238B9009270F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2E70FF61D6238B9009270F7 /* Main.storyboard */; };
 		A2E70FFA1D6238B9009270F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2E70FF91D6238B9009270F7 /* Assets.xcassets */; };
 		A2E70FFD1D6238B9009270F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2E70FFB1D6238B9009270F7 /* LaunchScreen.storyboard */; };
 		A2E710081D6238B9009270F7 /* FlandersChatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E710071D6238B9009270F7 /* FlandersChatTests.swift */; };
 		A2E710131D6238B9009270F7 /* FlandersChatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E710121D6238B9009270F7 /* FlandersChatUITests.swift */; };
+		A2E710211D623D87009270F7 /* ThreadDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E710201D623D87009270F7 /* ThreadDetailViewController.swift */; };
+		A2E710231D623FE4009270F7 /* ThreadListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E710221D623FE4009270F7 /* ThreadListTableViewController.swift */; };
+		A2E710261D6240DD009270F7 /* ContactsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E710251D6240DD009270F7 /* ContactsTableViewController.swift */; };
+		A2E710281D624126009270F7 /* CloudKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E710271D624126009270F7 /* CloudKitManager.swift */; };
+		A2E7102B1D625162009270F7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E7102A1D625162009270F7 /* User.swift */; };
+		A2E7102D1D62516C009270F7 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E7102C1D62516C009270F7 /* UserController.swift */; };
+		A2E7102F1D625188009270F7 /* ThreadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E7102E1D625188009270F7 /* ThreadController.swift */; };
+		A2E710311D625190009270F7 /* MessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E710301D625190009270F7 /* MessageController.swift */; };
+		A2E710341D6251A9009270F7 /* Thread.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E710331D6251A9009270F7 /* Thread.swift */; };
+		A2E710361D6251AF009270F7 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E710351D6251AF009270F7 /* Message.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +45,6 @@
 /* Begin PBXFileReference section */
 		A2E70FEF1D6238B9009270F7 /* FlandersChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlandersChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2E70FF21D6238B9009270F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A2E70FF41D6238B9009270F7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A2E70FF71D6238B9009270F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A2E70FF91D6238B9009270F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2E70FFC1D6238B9009270F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +55,16 @@
 		A2E7100E1D6238B9009270F7 /* FlandersChatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlandersChatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2E710121D6238B9009270F7 /* FlandersChatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlandersChatUITests.swift; sourceTree = "<group>"; };
 		A2E710141D6238B9009270F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A2E710201D623D87009270F7 /* ThreadDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadDetailViewController.swift; sourceTree = "<group>"; };
+		A2E710221D623FE4009270F7 /* ThreadListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadListTableViewController.swift; sourceTree = "<group>"; };
+		A2E710251D6240DD009270F7 /* ContactsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsTableViewController.swift; sourceTree = "<group>"; };
+		A2E710271D624126009270F7 /* CloudKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitManager.swift; sourceTree = "<group>"; };
+		A2E7102A1D625162009270F7 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A2E7102C1D62516C009270F7 /* UserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
+		A2E7102E1D625188009270F7 /* ThreadController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadController.swift; sourceTree = "<group>"; };
+		A2E710301D625190009270F7 /* MessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageController.swift; sourceTree = "<group>"; };
+		A2E710331D6251A9009270F7 /* Thread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thread.swift; sourceTree = "<group>"; };
+		A2E710351D6251AF009270F7 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,8 +116,11 @@
 			isa = PBXGroup;
 			children = (
 				A2E70FF21D6238B9009270F7 /* AppDelegate.swift */,
-				A2E70FF41D6238B9009270F7 /* ViewController.swift */,
 				A2E70FF61D6238B9009270F7 /* Main.storyboard */,
+				A2E710371D6251B6009270F7 /* Models */,
+				A2E710321D62519B009270F7 /* Model Controllers */,
+				A2E710241D62401F009270F7 /* View Controllers */,
+				A2E710291D624150009270F7 /* Utilities */,
 				A2E70FF91D6238B9009270F7 /* Assets.xcassets */,
 				A2E70FFB1D6238B9009270F7 /* LaunchScreen.storyboard */,
 				A2E70FFE1D6238B9009270F7 /* Info.plist */,
@@ -123,6 +144,44 @@
 				A2E710141D6238B9009270F7 /* Info.plist */,
 			);
 			path = FlandersChatUITests;
+			sourceTree = "<group>";
+		};
+		A2E710241D62401F009270F7 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A2E710221D623FE4009270F7 /* ThreadListTableViewController.swift */,
+				A2E710201D623D87009270F7 /* ThreadDetailViewController.swift */,
+				A2E710251D6240DD009270F7 /* ContactsTableViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		A2E710291D624150009270F7 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				A2E710271D624126009270F7 /* CloudKitManager.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		A2E710321D62519B009270F7 /* Model Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A2E7102C1D62516C009270F7 /* UserController.swift */,
+				A2E7102E1D625188009270F7 /* ThreadController.swift */,
+				A2E710301D625190009270F7 /* MessageController.swift */,
+			);
+			name = "Model Controllers";
+			sourceTree = "<group>";
+		};
+		A2E710371D6251B6009270F7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A2E7102A1D625162009270F7 /* User.swift */,
+				A2E710331D6251A9009270F7 /* Thread.swift */,
+				A2E710351D6251AF009270F7 /* Message.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,8 +315,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A2E70FF51D6238B9009270F7 /* ViewController.swift in Sources */,
+				A2E710231D623FE4009270F7 /* ThreadListTableViewController.swift in Sources */,
+				A2E710341D6251A9009270F7 /* Thread.swift in Sources */,
+				A2E710311D625190009270F7 /* MessageController.swift in Sources */,
+				A2E710211D623D87009270F7 /* ThreadDetailViewController.swift in Sources */,
+				A2E7102B1D625162009270F7 /* User.swift in Sources */,
+				A2E710261D6240DD009270F7 /* ContactsTableViewController.swift in Sources */,
+				A2E710361D6251AF009270F7 /* Message.swift in Sources */,
+				A2E7102D1D62516C009270F7 /* UserController.swift in Sources */,
+				A2E7102F1D625188009270F7 /* ThreadController.swift in Sources */,
 				A2E70FF31D6238B9009270F7 /* AppDelegate.swift in Sources */,
+				A2E710281D624126009270F7 /* CloudKitManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
