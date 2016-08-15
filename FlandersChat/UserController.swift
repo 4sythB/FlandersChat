@@ -13,14 +13,14 @@ class UserController {
     
     let cloudKitManager = CloudKitManager()
     
-    var currentUser: CKRecordID?
+    var currentUserRecordID: CKRecordID?
     var currentUserReference: CKReference?
     
     func createNewUser(completion: () -> Void) {
         
         cloudKitManager.fetchLoggedInUserRecord { (record, error) in
-            self.currentUser = record?.recordID
-            guard let userRecordID = self.currentUser else { completion(); return }
+            self.currentUserRecordID = record?.recordID
+            guard let userRecordID = self.currentUserRecordID else { completion(); return }
             
             self.currentUserReference = CKReference(recordID: userRecordID, action: .None)
             
@@ -45,9 +45,20 @@ class UserController {
         }
     }
     
-    func fetchCurrentUserRecord() {
+    func fetchCurrentUserRecord(completion: () -> Void) {
+        guard let userReference = currentUserReference else { completion(); return }
         
+        let predicate = NSPredicate(format: "reference == %@", userReference)
         
+        cloudKitManager.fetchRecordsWithType(User.recordTypeKey, predicate: predicate, recordFetchedBlock: { (record) in
+            self.currentUserRecordID = record.recordID
+        }) { (records, error) in
+            if error != nil {
+                print("Error fetching current user record: \(error?.localizedDescription)")
+                completion()
+            }
+            completion()
+        }
     }
 }
 

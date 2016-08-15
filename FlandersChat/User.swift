@@ -20,7 +20,6 @@ class User {
     let lastName: String
     let reference: CKReference
     
-    
     init(firstName: String, lastName: String, reference: CKReference) {
         self.firstName = firstName
         self.lastName = lastName
