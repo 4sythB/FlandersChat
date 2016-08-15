@@ -16,6 +16,8 @@ class UserController {
     var currentUserRecordID: CKRecordID?
     var currentUserReference: CKReference?
     
+    var users: [User] = []
+    
     func createNewUser(completion: () -> Void) {
         
         cloudKitManager.fetchLoggedInUserRecord { (record, error) in
@@ -58,6 +60,22 @@ class UserController {
                 completion()
             }
             completion()
+        }
+    }
+    
+    func fetchAllUsers(completion: () -> Void) {
+        
+        let predicate = NSPredicate(value: true)
+        
+        cloudKitManager.fetchRecordsWithType(User.recordTypeKey, predicate: predicate, recordFetchedBlock: { (record) in
+            
+            guard let user = User(record: record) else { completion(); return }
+            self.users.append(user)
+            
+        }) { (records, error) in
+            if error != nil {
+                print("Error fetching users for contact list: \(error?.localizedDescription)")
+            }
         }
     }
 }
