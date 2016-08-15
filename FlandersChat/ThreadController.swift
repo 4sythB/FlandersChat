@@ -7,3 +7,25 @@
 //
 
 import Foundation
+import CloudKit
+
+class ThreadController {
+    
+    let cloudKitManager = CloudKitManager()
+    
+    var threads: [Thread] = []
+    
+    func createNewThread(users: [CKReference], completion: () -> Void) {
+        
+        let thread = Thread(users: users)
+        let threadRecord = thread.cloudKitRecord
+        
+        threads.append(thread)
+        
+        cloudKitManager.saveRecord(threadRecord) { (_, error) in
+            if error != nil {
+                print("Error saving new thread to cloudKit: \(error?.localizedDescription)")
+            }
+        }
+    }
+}

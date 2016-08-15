@@ -15,8 +15,8 @@ class Thread {
     static let usersKey = "users"
     static let messagesKey = "messages"
     
-    var users: [CKRecord]
-    var messages: [Message]
+    var users: [CKReference]
+//    var messages: [Message]
     
     var cloudKitRecord: CKRecord {
         let record = CKRecord(recordType: Thread.recordTypeKey)
@@ -25,15 +25,13 @@ class Thread {
         return record
     }
     
-    init(users: [CKRecord], messages: [Message]) {
+    init(users: [CKReference]) {
         self.users = users
-        self.messages = messages
     }
     
     convenience init?(record: CKRecord) {
-        guard let users = record[Thread.usersKey] as? [CKRecord],
-            messages = record[Thread.messagesKey] as? [Message] else { return nil }
+        guard let users = record[Thread.usersKey] as? [CKReference] else { return nil }
         
-        self.init(users: users, messages: messages)
+        self.init(users: users)
     }
 }
