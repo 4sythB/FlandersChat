@@ -23,6 +23,7 @@
 		A2E710311D625190009270F7 /* MessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E710301D625190009270F7 /* MessageController.swift */; };
 		A2E710341D6251A9009270F7 /* Thread.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E710331D6251A9009270F7 /* Thread.swift */; };
 		A2E710361D6251AF009270F7 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E710351D6251AF009270F7 /* Message.swift */; };
+		A2E710391D625A6E009270F7 /* CloudKitSyncable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E710381D625A6E009270F7 /* CloudKitSyncable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		A2E710301D625190009270F7 /* MessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageController.swift; sourceTree = "<group>"; };
 		A2E710331D6251A9009270F7 /* Thread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thread.swift; sourceTree = "<group>"; };
 		A2E710351D6251AF009270F7 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		A2E710381D625A6E009270F7 /* CloudKitSyncable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitSyncable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				A2E710271D624126009270F7 /* CloudKitManager.swift */,
+				A2E710381D625A6E009270F7 /* CloudKitSyncable.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2E710231D623FE4009270F7 /* ThreadListTableViewController.swift in Sources */,
+				A2E710391D625A6E009270F7 /* CloudKitSyncable.swift in Sources */,
 				A2E710341D6251A9009270F7 /* Thread.swift in Sources */,
 				A2E710311D625190009270F7 /* MessageController.swift in Sources */,
 				A2E710211D623D87009270F7 /* ThreadDetailViewController.swift in Sources */,

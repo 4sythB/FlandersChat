@@ -7,3 +7,61 @@
 //
 
 import Foundation
+import CloudKit
+
+class UserController {
+    
+    let cloudKitManager = CloudKitManager()
+    
+    var currentUser: CKRecordID?
+    var currentUserReference: CKReference?
+    
+    func createNewUser(completion: () -> Void) {
+        
+        cloudKitManager.fetchLoggedInUserRecord { (record, error) in
+            self.currentUser = record?.recordID
+            guard let userRecordID = self.currentUser else { completion(); return }
+            
+            self.currentUserReference = CKReference(recordID: userRecordID, action: .None)
+            
+            self.cloudKitManager.fetchUsernameFromRecordID(userRecordID, completion: { (givenName, familyName) in
+                guard let firstName = givenName,
+                    lastName = familyName,
+                    reference = self.currentUserReference else { completion(); return }
+                
+                let userRecord = CKRecord(recordType: User.recordTypeKey, recordID: userRecordID)
+                userRecord.setValue(firstName, forKey: User.firstNameKey)
+                userRecord.setValue(lastName, forKey: User.lastNameKey)
+                userRecord.setValue(reference, forKey: User.referenceKey)
+                
+                self.cloudKitManager.saveRecord(userRecord, completion: { (_, error) in
+                    if error != nil {
+                        print("Error saving current user record to cloudKit: \(error?.localizedDescription)")
+                        completion()
+                    }
+                    completion()
+                })
+            })
+        }
+    }
+    
+    func fetchCurrentUserRecord() {
+        
+        
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

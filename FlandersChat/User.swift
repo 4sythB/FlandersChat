@@ -11,6 +11,7 @@ import CloudKit
 
 class User {
     
+    static let recordTypeKey = "user"
     static let firstNameKey = "firstName"
     static let lastNameKey = "lastName"
     static let referenceKey = "reference"
@@ -18,6 +19,7 @@ class User {
     let firstName: String
     let lastName: String
     let reference: CKReference
+    
     
     init(firstName: String, lastName: String, reference: CKReference) {
         self.firstName = firstName

@@ -13,10 +13,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    let cloudKitManager = CloudKitManager()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        
+        cloudKitManager.checkCloudKitAvailability()
+        cloudKitManager.requestDiscoverabilityPermission()
         
         return true
     }
