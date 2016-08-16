@@ -22,7 +22,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="eYP-ie-xcl" kind="show" id="Lie-Bk-w5u"/>
+                                    <segue destination="eYP-ie-xcl" kind="show" identifier="toThreadDetailSegue" id="Lie-Bk-w5u"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -47,7 +47,7 @@
         <scene sceneID="VCu-ha-bcB">
             <objects>
                 <tableViewController id="mZ7-PX-djz" customClass="ContactsTableViewController" customModule="FlandersChat" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="dJH-3i-B54">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="dJH-3i-B54">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -83,7 +83,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Compose" id="S2F-i1-iIw">
                             <connections>
-                                <segue destination="eYP-ie-xcl" kind="show" id="spN-js-1vl"/>
+                                <segue destination="eYP-ie-xcl" kind="show" identifier="contactsToComposeSegue" id="spN-js-1vl"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -92,7 +92,7 @@
             </objects>
             <point key="canvasLocation" x="917" y="1018"/>
         </scene>
-        <!--Thread Detail View Controller-->
+        <!--Title-->
         <scene sceneID="jzp-HC-P8C">
             <objects>
                 <viewController id="eYP-ie-xcl" customClass="ThreadDetailViewController" customModule="FlandersChat" customModuleProvider="target" sceneMemberID="viewController">
@@ -104,8 +104,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZDX-pk-99q">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZDX-pk-99q">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="ZG0-8o-VKE"/>
+                                </constraints>
                                 <items>
                                     <barButtonItem style="plain" id="xHd-hq-Lfh">
                                         <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Message" textAlignment="natural" minimumFontSize="17" id="qTw-HM-qrF">
@@ -115,7 +118,6 @@
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                     </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="hvN-2h-ApK"/>
                                     <barButtonItem title="Send" id="KLg-tg-gWj"/>
                                 </items>
                             </toolbar>
@@ -154,7 +156,15 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="ZDX-pk-99q" secondAttribute="bottom" id="4oa-eX-o8p"/>
+                            <constraint firstItem="ZDX-pk-99q" firstAttribute="leading" secondItem="7M2-bP-XiJ" secondAttribute="leading" id="ND8-8b-TNs"/>
+                            <constraint firstAttribute="trailing" secondItem="ZDX-pk-99q" secondAttribute="trailing" id="VAb-oJ-JIN"/>
+                        </constraints>
                     </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Title" id="FHp-7g-7aj"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mca-ly-Fky" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -198,6 +208,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="spN-js-1vl"/>
+        <segue reference="Lie-Bk-w5u"/>
     </inferredMetricsTieBreakers>
 </document>

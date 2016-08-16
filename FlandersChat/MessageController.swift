@@ -12,6 +12,7 @@ import CloudKit
 class MessagesController {
     
     let cloudKitManager = CloudKitManager()
+    static let sharedController = MessagesController()
     
     var messages: [Message] = []
     

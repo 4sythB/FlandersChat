@@ -9,19 +9,24 @@
 import UIKit
 
 class ThreadDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    var thread: Thread?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
+        guard let thread = thread else { return }
+        MessagesController.sharedController.fetchMessages(thread) { 
+            //
+        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return MessagesController.sharedController.messages.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("messageCell", forIndexPath: indexPath)
         
         return cell
     }
