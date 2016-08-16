@@ -22,11 +22,15 @@ class ThreadListTableViewController: UITableViewController {
                 UserController.sharedController.createNewUser({ 
                     //
                 })
+            } else {
+                ThreadController.sharedController.fetchThreadsForCurrentUser({ 
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.tableView.reloadData()
+                    }
+                })
             }
         }
     }
-    
-    
 
     // MARK: - Table view data source
 

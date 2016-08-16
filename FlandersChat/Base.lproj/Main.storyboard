@@ -76,7 +76,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Contacts" id="MgJ-XP-l44">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="E4y-lF-kmT"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="E4y-lF-kmT">
+                            <connections>
+                                <action selector="cancelButtonTapped:" destination="mZ7-PX-djz" id="TIi-oz-oBO"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Compose" id="S2F-i1-iIw">
                             <connections>
                                 <segue destination="eYP-ie-xcl" kind="show" id="spN-js-1vl"/>

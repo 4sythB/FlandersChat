@@ -12,25 +12,37 @@ class ContactsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        UserController.sharedController.users = []
 
+        UserController.sharedController.fetchAllUsers {
+            dispatch_async(dispatch_get_main_queue()) {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction func cancelButtonTapped(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 
     // MARK: - Table view data source
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        
+        return UserController.sharedController.users.count
     }
 
-    /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("contactCell", forIndexPath: indexPath)
 
-        // Configure the cell...
+        let user = UserController.sharedController.users[indexPath.row]
+        cell.textLabel?.text = "\(user.firstName) \(user.lastName)"
 
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.

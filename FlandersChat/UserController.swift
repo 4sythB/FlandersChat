@@ -80,19 +80,23 @@ class UserController {
                 completion(success: true)
             }
         }
+    }
+    
+    func fetchAllUsers(completion: () -> Void) {
         
-        func fetchAllUsers(completion: () -> Void) {
-            
-            let predicate = NSPredicate(value: true)
-            
-            cloudKitManager.fetchRecordsWithType(User.recordTypeKey, predicate: predicate, recordFetchedBlock: { (record) in
-                
-                guard let user = User(record: record) else { completion(); return }
-                self.users.append(user)
-                
-            }) { (records, error) in
-                if error != nil {
-                    print("Error fetching users for contact list: \(error?.localizedDescription)")
+        let predicate = NSPredicate(value: true)
+        
+        cloudKitManager.fetchRecordsWithType(User.recordTypeKey, predicate: predicate, recordFetchedBlock: { (record) in
+            //
+        }) { (records, error) in
+            if error != nil {
+                print("Error fetching users for contact list: \(error?.localizedDescription)")
+            } else {
+                guard let records = records else { completion(); return }
+                for record in records {
+                    guard let user = User(record: record) else { completion(); return }
+                    self.users.append(user)
+                    completion()
                 }
             }
         }

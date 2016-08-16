@@ -29,4 +29,27 @@ class ThreadController {
             }
         }
     }
+    
+    func fetchThreadsForCurrentUser(completion: () -> Void) {
+        
+        guard let reference = UserController.sharedController.currentUserReference else { completion(); return }
+        let predicate = NSPredicate(format: "users CONTAINS %@", reference)
+        
+        cloudKitManager.fetchRecordsWithType(Thread.recordTypeKey, predicate: predicate, recordFetchedBlock: { (record) in
+            //
+        }) { (records, error) in
+            if error != nil {
+                print("Error fetching threads for current user: \(error?.localizedDescription)")
+                completion()
+            } else {
+                dispatch_async(dispatch_get_main_queue()) {
+                    guard let records = records else { completion(); return }
+                    for record in records {
+                        guard let thread = Thread(record: record) else { completion(); return }
+                        self.threads.append(thread)
+                    }
+                }
+            }
+        }
+    }
 }
