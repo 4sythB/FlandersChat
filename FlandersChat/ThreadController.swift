@@ -11,6 +11,7 @@ import CloudKit
 
 class ThreadController {
     
+    static let sharedController = ThreadController()
     let cloudKitManager = CloudKitManager()
     
     var threads: [Thread] = []

@@ -32,19 +32,19 @@ class Message {
         return record
     }
     
-    init(text: String, timestamp: NSDate = NSDate(), sender: CKReference, conversation: CKReference) {
+    init(text: String, timestamp: NSDate = NSDate(), sender: CKReference, thread: CKReference) {
         self.text = text
         self.timestamp = timestamp
         self.sender = sender
-        self.thread = conversation
+        self.thread = thread
     }
     
     convenience init?(record: CKRecord) {
         guard let text = record[Message.textKey] as? String,
             timestamp = record[Message.timestampKey] as? NSDate,
             sender = record[Message.senderKey] as? CKReference,
-            conversation = record[Message.threadKey] as? CKReference else { return nil }
+            thread = record[Message.threadKey] as? CKReference else { return nil }
         
-        self.init(text: text, timestamp: timestamp, sender: sender, conversation: conversation)
+        self.init(text: text, timestamp: timestamp, sender: sender, thread: thread)
     }
 }

@@ -9,13 +9,31 @@
 import UIKit
 
 class ThreadListTableViewController: UITableViewController {
+    
+    let cloudKitManager = CloudKitManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        cloudKitManager.checkCloudKitAvailability()
 
+        UserController.sharedController.fetchCurrentUserRecord { (success) in
+            if !success {
+                UserController.sharedController.createNewUser({ 
+                    //
+                })
+            }
+        }
     }
+    
+    
 
     // MARK: - Table view data source
+
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return ThreadController.sharedController.threads.count
+    }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("threadCell", forIndexPath: indexPath)
