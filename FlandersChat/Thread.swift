@@ -14,13 +14,20 @@ class Thread {
     static let recordTypeKey = "thread"
     static let usersKey = "users"
     static let messagesKey = "messages"
+    static let recordIDKey = "ckRecordID"
     
     var users: [CKReference]
-//    var messages: [Message]
+    var threadRecordID: CKRecordID?
+    var messages: [Message] = []
     
     var cloudKitRecord: CKRecord {
         let record = CKRecord(recordType: Thread.recordTypeKey)
         record.setValue(users, forKey: Thread.usersKey)
+        
+        if let recordID = threadRecordID {
+            let recordIDReference = CKReference(recordID: recordID, action: .None)
+            record.setValue(recordIDReference, forKey: Thread.recordIDKey)
+        }
         
         return record
     }
@@ -33,5 +40,6 @@ class Thread {
         guard let users = record[Thread.usersKey] as? [CKReference] else { return nil }
         
         self.init(users: users)
+        threadRecordID = record.recordID
     }
 }

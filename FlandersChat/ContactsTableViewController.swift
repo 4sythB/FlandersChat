@@ -70,14 +70,15 @@ class ContactsTableViewController: UITableViewController {
             }
             
             for user in users {
-                let userReference = user.reference
+                guard let userRecord = user.record else { return }
+                let userReference = CKReference(recordID: userRecord.recordID, action: .None)
                 usersReferences.append(userReference)
             }
             
-            let thread = Thread(users: usersReferences)
-            
-            destinationVC.thread = thread
-            destinationVC.users = usersReferences
+            ThreadController.sharedController.createNewThread(usersReferences, completion: { (thread) in
+                destinationVC.thread = thread
+                destinationVC.users = usersReferences
+            })
         }
     }
 }

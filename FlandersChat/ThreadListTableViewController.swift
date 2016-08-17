@@ -106,9 +106,15 @@ class ThreadListTableViewController: UITableViewController {
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
+        if segue.identifier == "toThreadDetailSegue" {
+            guard let destinationVC = segue.destinationViewController as? ThreadDetailViewController,
+                indexPath = tableView.indexPathForSelectedRow else { return }
+            
+            let thread = ThreadController.sharedController.threads[indexPath.row]
+            
+            destinationVC.thread = thread
+        }
     }
-    
 }
 
 

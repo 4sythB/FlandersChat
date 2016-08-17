@@ -22,6 +22,8 @@ class Message {
     let sender: CKReference
     let thread: CKReference
     
+    var senderUser: User?
+    
     var cloudKitRecord: CKRecord {
         let record = CKRecord(recordType: Message.recordTypeKey)
         record.setValue(text, forKey: Message.textKey)

@@ -41,6 +41,7 @@ class UserController {
                 userRecord.setValue(lastName, forKey: User.lastNameKey)
                 userRecord.setValue(reference, forKey: User.referenceKey)
                 
+                
                 self.cloudKitManager.saveRecord(userRecord, completion: { (_, error) in
                     if error != nil {
                         print("Error saving current user record to cloudKit: \(error?.localizedDescription)")
@@ -58,20 +59,24 @@ class UserController {
         cloudKitManager.fetchLoggedInUserRecord { (record, error) in
             guard let record = record else { completion(success: false); return }
             self.currentUserRecordID = record.recordID
-            guard let userRecordID = self.currentUserRecordID else { completion(success: false); return }
+//            guard let userRecordID = self.currentUserRecordID else { completion(success: false); return }
             
-            self.currentUserReference = CKReference(recordID: userRecordID, action: .None)
+//            self.currentUserReference = CKReference(recordID: userRecordID, action: .None)
             
-            guard let userReference = self.currentUserReference else {
-                completion(success: false)
-                print("Failed currentUserRef")
-                return
-            }
-            
-            let predicate = NSPredicate(format: "reference == %@", userReference)
+//            guard let userReference = self.currentUserReference else {
+//                completion(success: false)
+//                print("Failed currentUserRef")
+//                return
+//            }
+            let reference = CKReference(recordID: record.recordID, action: .None)
+            let predicate = NSPredicate(format: "reference == %@", argumentArray: [reference])
             
             self.cloudKitManager.fetchRecordsWithType(User.recordTypeKey, predicate: predicate, recordFetchedBlock: { (record) in
                 self.currentUserRecordID = record.recordID
+                guard let currentUserID = self.currentUserRecordID else { return }
+                let user = User(record: record)
+                user?.record = record
+                self.currentUserReference = CKReference(recordID: currentUserID, action: .None)
             }) { (records, error) in
                 if error != nil {
                     print("Error fetching current user record: \(error?.localizedDescription)")

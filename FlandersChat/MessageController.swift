@@ -32,7 +32,7 @@ class MessagesController {
     
     func fetchMessages(thread: Thread, completion: () -> Void) {
         
-        let threadRecordID = thread.cloudKitRecord.recordID
+        guard let threadRecordID = thread.threadRecordID else { completion(); return }
         
         let predicate = NSPredicate(format: "thread == %@", threadRecordID)
         
@@ -48,11 +48,33 @@ class MessagesController {
                     
                     for record in records {
                         guard let message = Message(record: record) else { completion(); return }
-                        self.messages.append(message)
+                        thread.messages.append(message)
                     }
                     completion()
                 }
             }
         }
     }
+    
+    func fetchSenderForMessage(message: Message, completion: () -> Void) {
+        
+        cloudKitManager.fetchRecordWithID(message.sender.recordID) { (record, error) in
+            if error != nil {
+                print("Error fetching sender of message: \(error?.localizedDescription)")
+                completion()
+            } else {
+                guard let record = record, user = User(record: record) else { return }
+                message.senderUser = user
+                completion()
+            }
+        }
+    }
 }
+
+
+
+
+
+
+
+
