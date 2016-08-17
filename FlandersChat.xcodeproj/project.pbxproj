@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A24177161D64CE7A0069A2E7 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24177151D64CE7A0069A2E7 /* MessageTableViewCell.swift */; };
 		A2E70FF31D6238B9009270F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E70FF21D6238B9009270F7 /* AppDelegate.swift */; };
 		A2E70FF81D6238B9009270F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2E70FF61D6238B9009270F7 /* Main.storyboard */; };
 		A2E70FFA1D6238B9009270F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2E70FF91D6238B9009270F7 /* Assets.xcassets */; };
@@ -45,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A24177151D64CE7A0069A2E7 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		A2E70FEF1D6238B9009270F7 /* FlandersChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlandersChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2E70FF21D6238B9009270F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2E70FF71D6238B9009270F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				A2E710221D623FE4009270F7 /* ThreadListTableViewController.swift */,
 				A2E710201D623D87009270F7 /* ThreadDetailViewController.swift */,
 				A2E710251D6240DD009270F7 /* ContactsTableViewController.swift */,
+				A24177151D64CE7A0069A2E7 /* MessageTableViewCell.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				A2E710211D623D87009270F7 /* ThreadDetailViewController.swift in Sources */,
 				A2E7102B1D625162009270F7 /* User.swift in Sources */,
 				A2E710261D6240DD009270F7 /* ContactsTableViewController.swift in Sources */,
+				A24177161D64CE7A0069A2E7 /* MessageTableViewCell.swift in Sources */,
 				A2E710361D6251AF009270F7 /* Message.swift in Sources */,
 				A2E7102D1D62516C009270F7 /* UserController.swift in Sources */,
 				A2E7102F1D625188009270F7 /* ThreadController.swift in Sources */,
@@ -570,6 +574,7 @@
 				A2E710191D6238B9009270F7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A2E7101A1D6238B9009270F7 /* Build configuration list for PBXNativeTarget "FlandersChatTests" */ = {
 			isa = XCConfigurationList;
@@ -578,6 +583,7 @@
 				A2E7101C1D6238B9009270F7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A2E7101D1D6238B9009270F7 /* Build configuration list for PBXNativeTarget "FlandersChatUITests" */ = {
 			isa = XCConfigurationList;
@@ -586,6 +592,7 @@
 				A2E7101F1D6238B9009270F7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

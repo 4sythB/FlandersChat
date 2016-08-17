@@ -7,10 +7,14 @@
 //
 
 import UIKit
+import CloudKit
 
 class ThreadDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var messageTextField: UITextField!
+    
     var thread: Thread?
+    var users: [CKReference] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +33,33 @@ class ThreadDetailViewController: UIViewController, UITableViewDelegate, UITable
         let cell = tableView.dequeueReusableCellWithIdentifier("messageCell", forIndexPath: indexPath)
         
         return cell
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction func sendMessagButtonTapped(sender: AnyObject) {
+        
+        ThreadController.sharedController.createNewThread(users) { 
+            self.createMessage()
+        }
+    }
+    
+    // MARK: - Helper functions
+    
+    func createMessage() {
+        guard let messageText = messageTextField.text,
+            sender = UserController.sharedController.currentUserReference,
+            threadRecordID = thread?.cloudKitRecord.recordID else { return }
+        
+        let threadReference = CKReference(recordID: threadRecordID, action: .DeleteSelf)
+        
+        let message = Message(text: messageText, sender: sender, thread: threadReference)
+        
+        MessagesController.sharedController.saveMessage(message) {
+            dispatch_async(dispatch_get_main_queue()) {
+                self.messageTextField.text = ""
+            }
+        }
     }
 
     /*

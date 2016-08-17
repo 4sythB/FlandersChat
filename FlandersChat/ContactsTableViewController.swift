@@ -77,6 +77,7 @@ class ContactsTableViewController: UITableViewController {
             let thread = Thread(users: usersReferences)
             
             destinationVC.thread = thread
+            destinationVC.users = usersReferences
         }
     }
 }

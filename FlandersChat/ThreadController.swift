@@ -14,7 +14,13 @@ class ThreadController {
     static let sharedController = ThreadController()
     let cloudKitManager = CloudKitManager()
     
-    var threads: [Thread] = []
+    var threads: [Thread] = [] {
+        didSet {
+            //
+        }
+    }
+    
+    var usersInThreads: [User] = []
     
     func createNewThread(users: [CKReference], completion: () -> Void) {
         
@@ -26,7 +32,9 @@ class ThreadController {
         cloudKitManager.saveRecord(threadRecord) { (_, error) in
             if error != nil {
                 print("Error saving new thread to cloudKit: \(error?.localizedDescription)")
+                completion()
             }
+            completion()
         }
     }
     
@@ -48,8 +56,38 @@ class ThreadController {
                         guard let thread = Thread(record: record) else { completion(); return }
                         self.threads.append(thread)
                     }
+                    completion()
                 }
             }
         }
     }
+    
+//    func fetchUsersInThread(thread: Thread, completion: () -> Void) {
+//        
+//        let usersReferences = thread.users
+//        for userReference in usersReferences {
+//            let userRecordID = userReference.recordID
+//            cloudKitManager.fetchRecordWithID(userRecordID, completion: { (record, error) in
+//                guard let record = record,
+//                    user = User(record: record) else { return }
+//                self.usersInThreads.append(user)
+//                completion()
+//            })
+//        }
+//    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
