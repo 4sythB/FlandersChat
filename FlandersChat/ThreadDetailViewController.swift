@@ -62,9 +62,7 @@ class ThreadDetailViewController: UIViewController, UITableViewDelegate, UITable
         guard let messageText = messageTextField.text,
             currentUserRecordID = UserController.sharedController.currentUserReference?.recordID,
             thread = thread,
-            threadRecordID = thread.threadRecordID else {
-                print("Unable to create message");
-                return }
+            threadRecordID = thread.threadRecordID else { print("Unable to create message"); return }
         
         let sender = CKReference(recordID: currentUserRecordID, action: .None)
         let threadReference = CKReference(recordID: threadRecordID, action: .DeleteSelf)

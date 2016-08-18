@@ -67,6 +67,11 @@ class ThreadController {
             }
         }
     }
+    
+    // TODO: - Make this func instead of in the cellForRow
+    func fetchUsersInThread(thread: Thread, completion: () -> Void) {
+        
+    }
 }
 
 

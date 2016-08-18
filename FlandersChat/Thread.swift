@@ -19,6 +19,7 @@ class Thread {
     var users: [CKReference]
     var threadRecordID: CKRecordID?
     var messages: [Message] = []
+    var userz: [User] = []   // Maybe delete this line //
     
     var cloudKitRecord: CKRecord {
         let record = CKRecord(recordType: Thread.recordTypeKey)

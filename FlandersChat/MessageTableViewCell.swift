@@ -27,8 +27,8 @@ class MessageTableViewCell: UITableViewCell {
     
     func updateWithMessage(message: Message) {
         
-        guard let sender = message.senderUser else { print("Sender no worky"); return }
-        let senderName = "\(sender.firstName) \(sender.lastName))"
+        guard let sender = message.senderUser else { return }
+        let senderName = "\(sender.firstName) \(sender.lastName)"
         
         senderLabel.text = senderName
         messageLabel.text = message.text

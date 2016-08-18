@@ -56,7 +56,7 @@ class ThreadListTableViewController: UITableViewController {
     func updateLabel(thread: Thread, completion: ((name: String?) -> Void)? = nil) {
         
         for user in thread.users {
-            let predicate = NSPredicate(format: "reference == %@", user.recordID)
+            let predicate = NSPredicate(format: "recordID == %@", user.recordID)
             cloudKitManager.fetchRecordsWithType(User.recordTypeKey, predicate: predicate, recordFetchedBlock: { (record) in
                 guard let user = User(record: record) else {
                     print("Unable to fetch record for user")
