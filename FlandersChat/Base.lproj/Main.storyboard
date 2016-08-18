@@ -118,7 +118,7 @@
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                     </barButtonItem>
-                                    <barButtonItem title="Send" id="KLg-tg-gWj">
+                                    <barButtonItem tag="1" title="Send" id="KLg-tg-gWj">
                                         <connections>
                                             <action selector="sendMessagButtonTapped:" destination="eYP-ie-xcl" id="jlf-ht-mxT"/>
                                         </connections>
@@ -205,6 +205,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="messageTextField" destination="qTw-HM-qrF" id="EMA-Ab-Hmb"/>
+                        <outlet property="sendButton" destination="KLg-tg-gWj" id="SyF-sJ-TWl"/>
                         <outlet property="tableView" destination="dXO-bc-ium" id="BhY-pS-nxV"/>
                     </connections>
                 </viewController>

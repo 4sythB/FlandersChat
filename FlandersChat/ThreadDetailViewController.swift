@@ -13,6 +13,7 @@ class ThreadDetailViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageTextField: UITextField!
+    @IBOutlet weak var sendButton: UIBarButtonItem!
     
     var thread: Thread?
     var users: [CKReference] = []
@@ -23,6 +24,7 @@ class ThreadDetailViewController: UIViewController, UITableViewDelegate, UITable
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(messagesWereUpdated), name: "messageAdded", object: nil)
         
         guard let thread = thread else { return }
+
         thread.messages = []
         MessagesController.sharedController.fetchMessages(thread) {
             // Fetch users for each message/assign the user to that message
@@ -30,6 +32,8 @@ class ThreadDetailViewController: UIViewController, UITableViewDelegate, UITable
             for message in messages {
                 MessagesController.sharedController.fetchSenderForMessage(message, completion: {
                     dispatch_async(dispatch_get_main_queue()) {
+                        let indexPath = NSIndexPath(forRow: thread.messages.count - 1, inSection: 0)
+                        self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Bottom, animated: false)
                         self.tableView.reloadData()
                     }
                 })
@@ -38,7 +42,9 @@ class ThreadDetailViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func messagesWereUpdated() {
-        self.tableView.reloadData()
+        dispatch_async(dispatch_get_main_queue()) {
+            self.tableView.reloadData()
+        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -59,8 +65,9 @@ class ThreadDetailViewController: UIViewController, UITableViewDelegate, UITable
     // MARK: - Actions
     
     @IBAction func sendMessagButtonTapped(sender: AnyObject) {
-        
-        createMessage()
+        if messageTextField.text?.characters.count > 0 {
+            createMessage()
+        }
     }
     
     // MARK: - Helper functions
@@ -76,10 +83,13 @@ class ThreadDetailViewController: UIViewController, UITableViewDelegate, UITable
         
         let message = Message(text: messageText, sender: sender, thread: threadReference)
         
-        MessagesController.sharedController.saveMessage(message) {
-            dispatch_async(dispatch_get_main_queue()) {
-                self.messageTextField.text = ""
-                thread.messages.append(message)
+        MessagesController.sharedController.fetchSenderForMessage(message) { 
+            MessagesController.sharedController.saveMessage(message) {
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.messageTextField.text = ""
+                    thread.messages.append(message)
+                    
+                }
             }
         }
     }
