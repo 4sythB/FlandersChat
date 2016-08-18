@@ -53,7 +53,11 @@ class ThreadController {
                 completion()
             } else {
                 dispatch_async(dispatch_get_main_queue()) {
-                    guard let records = records else { completion(); return }
+                    guard let records = records else {
+                        print("Records are nil")
+                        completion()
+                        return
+                    }
                     for record in records {
                         guard let thread = Thread(record: record) else { completion(); return }
                         self.threads.append(thread)

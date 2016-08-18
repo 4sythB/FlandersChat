@@ -53,16 +53,22 @@ class ThreadListTableViewController: UITableViewController {
         return cell
     }
     
-    func updateLabel(thread: Thread, completion: (name: String?) -> Void) {
+    func updateLabel(thread: Thread, completion: ((name: String?) -> Void)? = nil) {
         
         for user in thread.users {
             let predicate = NSPredicate(format: "reference == %@", user.recordID)
             cloudKitManager.fetchRecordsWithType(User.recordTypeKey, predicate: predicate, recordFetchedBlock: { (record) in
-                guard let user = User(record: record) else { completion(name: nil); return }
-                UserController.sharedController.users.append(user)
-                completion(name: "\(user.firstName) \(user.lastName)")
-                }, completion: { (records, error) in
+                guard let user = User(record: record) else {
+                    print("Unable to fetch record for user")
+                    guard let completion = completion else { return }
                     completion(name: nil)
+                    return
+                }
+                UserController.sharedController.users.append(user)
+                guard let completion = completion else { return }
+                    completion(name: "\(user.firstName) \(user.lastName)")
+                }, completion: { (records, error) in
+                    //
             })
         }
     }

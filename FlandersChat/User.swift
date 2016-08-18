@@ -22,10 +22,11 @@ class User {
     
     var record: CKRecord?
     
-    init(firstName: String, lastName: String, reference: CKReference) {
+    init(firstName: String, lastName: String, reference: CKReference, record: CKRecord) {
         self.firstName = firstName
         self.lastName = lastName
         self.reference = reference
+        self.record = record
     }
     
     convenience init?(record: CKRecord) {
@@ -33,6 +34,6 @@ class User {
             lastName = record[User.lastNameKey] as? String,
             reference = record[User.referenceKey] as? CKReference else { return nil }
         
-        self.init(firstName: firstName, lastName: lastName, reference: reference)
+        self.init(firstName: firstName, lastName: lastName, reference: reference, record: record)
     }
 }

@@ -70,7 +70,9 @@ class ContactsTableViewController: UITableViewController {
             }
             
             for user in users {
-                guard let userRecord = user.record else { return }
+                guard let userRecord = user.record else {
+                    return
+                }
                 let userReference = CKReference(recordID: userRecord.recordID, action: .None)
                 usersReferences.append(userReference)
             }
