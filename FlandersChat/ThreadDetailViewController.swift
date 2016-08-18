@@ -23,9 +23,10 @@ class ThreadDetailViewController: UIViewController, UITableViewDelegate, UITable
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(messagesWereUpdated), name: "messageAdded", object: nil)
         
         guard let thread = thread else { return }
+        thread.messages = []
         MessagesController.sharedController.fetchMessages(thread) {
             // Fetch users for each message/assign the user to that message
-            let messages = thread.messages
+            let messages = thread.sortedMessages
             for message in messages {
                 MessagesController.sharedController.fetchSenderForMessage(message, completion: {
                     dispatch_async(dispatch_get_main_queue()) {
@@ -48,7 +49,7 @@ class ThreadDetailViewController: UIViewController, UITableViewDelegate, UITable
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCellWithIdentifier("messageCell", forIndexPath: indexPath) as? MessageTableViewCell,
             thread = thread  else { return UITableViewCell() }
-        let message = thread.messages[indexPath.row]
+        let message = thread.sortedMessages[indexPath.row]
         
         cell.updateWithMessage(message)
         

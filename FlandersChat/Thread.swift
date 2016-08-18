@@ -23,6 +23,12 @@ class Thread {
             NSNotificationCenter.defaultCenter().postNotificationName("messageAdded", object: self)
         }
     }
+    var sortedMessages: [Message] {
+        let sortedArray = messages.sort({ $0.timestamp.timeIntervalSince1970 < $1.timestamp.timeIntervalSince1970 })
+        return sortedArray
+    }
+    
+    
     var userz: [User] = []   // Maybe delete this line //
     
     var cloudKitRecord: CKRecord {
