@@ -125,7 +125,7 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="89" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dXO-bc-ium">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="89" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dXO-bc-ium">
                                 <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -136,13 +136,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="88.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sender" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nEu-9O-0ZS">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sender" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nEu-9O-0ZS">
                                                     <rect key="frame" x="8" y="8" width="201" height="12"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="201" id="I1g-2Y-gcv"/>
+                                                        <constraint firstAttribute="height" constant="12" id="s0G-3j-eXW"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="10"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Message" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NKS-FJ-MPQ">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NKS-FJ-MPQ">
                                                     <rect key="frame" x="8" y="23" width="428" height="58.5"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -150,6 +154,21 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="nEu-9O-0ZS" firstAttribute="top" secondItem="eXD-xb-aDU" secondAttribute="top" constant="8" id="JN8-bV-bpZ"/>
+                                                <constraint firstAttribute="bottom" secondItem="NKS-FJ-MPQ" secondAttribute="bottom" constant="7" id="Uma-la-esW"/>
+                                                <constraint firstAttribute="trailing" secondItem="nEu-9O-0ZS" secondAttribute="trailing" constant="391" id="b4C-Pv-gqB"/>
+                                                <constraint firstAttribute="trailing" secondItem="NKS-FJ-MPQ" secondAttribute="trailing" constant="164" id="cUH-SD-deF"/>
+                                                <constraint firstItem="NKS-FJ-MPQ" firstAttribute="top" secondItem="nEu-9O-0ZS" secondAttribute="bottom" constant="3" id="fPY-Kk-b7V"/>
+                                                <constraint firstItem="NKS-FJ-MPQ" firstAttribute="top" secondItem="nEu-9O-0ZS" secondAttribute="bottom" constant="3" id="nn4-PG-OKb"/>
+                                                <constraint firstItem="nEu-9O-0ZS" firstAttribute="leading" secondItem="eXD-xb-aDU" secondAttribute="leading" constant="8" id="oac-RR-BDd"/>
+                                                <constraint firstItem="NKS-FJ-MPQ" firstAttribute="leading" secondItem="eXD-xb-aDU" secondAttribute="leading" constant="8" id="sC3-hB-JOT"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="b4C-Pv-gqB"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="messageLabel" destination="NKS-FJ-MPQ" id="GjU-bR-Mvz"/>
@@ -167,8 +186,18 @@
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="ZDX-pk-99q" secondAttribute="bottom" id="4oa-eX-o8p"/>
                             <constraint firstItem="ZDX-pk-99q" firstAttribute="leading" secondItem="7M2-bP-XiJ" secondAttribute="leading" id="ND8-8b-TNs"/>
+                            <constraint firstItem="iUP-Pr-Vql" firstAttribute="top" secondItem="dXO-bc-ium" secondAttribute="bottom" id="Rq8-Io-chF"/>
                             <constraint firstAttribute="trailing" secondItem="ZDX-pk-99q" secondAttribute="trailing" id="VAb-oJ-JIN"/>
+                            <constraint firstAttribute="trailing" secondItem="dXO-bc-ium" secondAttribute="trailing" id="iI4-7q-acn"/>
+                            <constraint firstItem="dXO-bc-ium" firstAttribute="leading" secondItem="7M2-bP-XiJ" secondAttribute="leading" id="sPJ-qo-h4F"/>
+                            <constraint firstItem="ZDX-pk-99q" firstAttribute="top" secondItem="dXO-bc-ium" secondAttribute="bottom" id="tBe-Zr-iWG"/>
+                            <constraint firstItem="dXO-bc-ium" firstAttribute="top" secondItem="Aog-dT-HrV" secondAttribute="bottom" id="zbh-5f-sde"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Rq8-Io-chF"/>
+                            </mask>
+                        </variation>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Title" id="FHp-7g-7aj"/>

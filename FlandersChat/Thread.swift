@@ -18,7 +18,11 @@ class Thread {
     
     var users: [CKReference]
     var threadRecordID: CKRecordID?
-    var messages: [Message] = []
+    var messages: [Message] = [] {
+        didSet {
+            NSNotificationCenter.defaultCenter().postNotificationName("messageAdded", object: self)
+        }
+    }
     var userz: [User] = []   // Maybe delete this line //
     
     var cloudKitRecord: CKRecord {

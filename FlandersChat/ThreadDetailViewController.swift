@@ -20,6 +20,8 @@ class ThreadDetailViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(messagesWereUpdated), name: "messageAdded", object: nil)
+        
         guard let thread = thread else { return }
         MessagesController.sharedController.fetchMessages(thread) {
             // Fetch users for each message/assign the user to that message
@@ -32,6 +34,10 @@ class ThreadDetailViewController: UIViewController, UITableViewDelegate, UITable
                 })
             }
         }
+    }
+    
+    func messagesWereUpdated() {
+        self.tableView.reloadData()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -72,6 +78,7 @@ class ThreadDetailViewController: UIViewController, UITableViewDelegate, UITable
         MessagesController.sharedController.saveMessage(message) {
             dispatch_async(dispatch_get_main_queue()) {
                 self.messageTextField.text = ""
+                thread.messages.append(message)
             }
         }
     }
