@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A24177161D64CE7A0069A2E7 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24177151D64CE7A0069A2E7 /* MessageTableViewCell.swift */; };
+		A2A5692B1D666D5E009D4533 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2A5692A1D666D5E009D4533 /* CloudKit.framework */; };
 		A2E70FF31D6238B9009270F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E70FF21D6238B9009270F7 /* AppDelegate.swift */; };
 		A2E70FF81D6238B9009270F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2E70FF61D6238B9009270F7 /* Main.storyboard */; };
 		A2E70FFA1D6238B9009270F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2E70FF91D6238B9009270F7 /* Assets.xcassets */; };
@@ -25,7 +26,6 @@
 		A2E710341D6251A9009270F7 /* Thread.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E710331D6251A9009270F7 /* Thread.swift */; };
 		A2E710361D6251AF009270F7 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E710351D6251AF009270F7 /* Message.swift */; };
 		A2E710391D625A6E009270F7 /* CloudKitSyncable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E710381D625A6E009270F7 /* CloudKitSyncable.swift */; };
-		A2E7103C1D627456009270F7 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2E7103B1D627456009270F7 /* CloudKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +47,7 @@
 
 /* Begin PBXFileReference section */
 		A24177151D64CE7A0069A2E7 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
+		A2A5692A1D666D5E009D4533 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		A2E70FEF1D6238B9009270F7 /* FlandersChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlandersChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2E70FF21D6238B9009270F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2E70FF71D6238B9009270F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -71,7 +72,6 @@
 		A2E710351D6251AF009270F7 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		A2E710381D625A6E009270F7 /* CloudKitSyncable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitSyncable.swift; sourceTree = "<group>"; };
 		A2E7103A1D627452009270F7 /* FlandersChat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = FlandersChat.entitlements; sourceTree = "<group>"; };
-		A2E7103B1D627456009270F7 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A2E7103C1D627456009270F7 /* CloudKit.framework in Frameworks */,
+				A2A5692B1D666D5E009D4533 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,7 +103,7 @@
 		A2E70FE61D6238B9009270F7 = {
 			isa = PBXGroup;
 			children = (
-				A2E7103B1D627456009270F7 /* CloudKit.framework */,
+				A2A5692A1D666D5E009D4533 /* CloudKit.framework */,
 				A2E70FF11D6238B9009270F7 /* FlandersChat */,
 				A2E710061D6238B9009270F7 /* FlandersChatTests */,
 				A2E710111D6238B9009270F7 /* FlandersChatUITests */,
@@ -490,6 +490,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FlandersChat/FlandersChat.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = FlandersChat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.4syth.FlandersChat;
@@ -502,6 +503,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FlandersChat/FlandersChat.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = FlandersChat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.4syth.FlandersChat;
