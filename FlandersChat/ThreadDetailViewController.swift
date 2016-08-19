@@ -16,7 +16,7 @@ class ThreadDetailViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var toolbarView: UIView!
     @IBOutlet weak var toolbarViewBottomConstraint: NSLayoutConstraint!
-
+    @IBOutlet weak var tableViewBottomConstraint: NSLayoutConstraint!
     
     var toolbarBottomConstraintInitialValue: CGFloat = 0
     
@@ -119,6 +119,7 @@ class ThreadDetailViewController: UIViewController, UITableViewDelegate, UITable
             UIView.animateWithDuration(duration, animations: { 
                 if self.toolbarViewBottomConstraint.constant == 0 {
                     self.toolbarViewBottomConstraint.constant += keyboardSize.height
+                    self.tableViewBottomConstraint.constant += keyboardSize.height
                 }
             })
         }
@@ -130,6 +131,7 @@ class ThreadDetailViewController: UIViewController, UITableViewDelegate, UITable
             UIView.animateWithDuration(duration, animations: {
                 if self.toolbarViewBottomConstraint.constant != 0 {
                     self.toolbarViewBottomConstraint.constant -= keyboardSize.height
+                    self.tableViewBottomConstraint.constant -= keyboardSize.height
                 }
             })
         }
