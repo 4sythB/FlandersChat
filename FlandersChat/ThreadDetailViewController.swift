@@ -36,6 +36,7 @@ class ThreadDetailViewController: UIViewController, UITableViewDelegate, UITable
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShow), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardDidShow), name: UIKeyboardDidShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(messagesWereUpdated), name: "messageAdded", object: nil)
         
         guard let thread = thread else { return }
@@ -127,6 +128,13 @@ class ThreadDetailViewController: UIViewController, UITableViewDelegate, UITable
                 }
             })
         }
+    }
+    
+    func keyboardDidShow(notification: NSNotification) {
+        guard let thread = self.thread else { return }
+        self.tableView.reloadData()
+        let indexPath = NSIndexPath(forRow: thread.messages.count - 1, inSection: 0)
+        self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Bottom, animated: true)
     }
     
     func keyboardWillHide(notification: NSNotification) {
