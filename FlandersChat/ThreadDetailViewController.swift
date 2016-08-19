@@ -26,6 +26,10 @@ class ThreadDetailViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.estimatedRowHeight = 60
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.separatorStyle = .None
+        
         messageTextField.delegate = self
         
         enableKeyboardHideOnTap()

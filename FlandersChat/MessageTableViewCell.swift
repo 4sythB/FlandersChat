@@ -57,3 +57,7 @@ class MessageTableViewCell: UITableViewCell {
         messageLabel.layer.cornerRadius = 6.0
     }
 }
+
+
+
+

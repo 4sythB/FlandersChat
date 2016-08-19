@@ -105,15 +105,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="89" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dXO-bc-ium">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dXO-bc-ium">
                                 <rect key="frame" x="0.0" y="64" width="600" height="444"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="messageCell" rowHeight="89" id="QMg-uU-L19" customClass="MessageTableViewCell" customModule="FlandersChat" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="600" height="89"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="messageCell" rowHeight="60" id="QMg-uU-L19" customClass="MessageTableViewCell" customModule="FlandersChat" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QMg-uU-L19" id="eXD-xb-aDU">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="88.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sender" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nEu-9O-0ZS">
@@ -126,7 +126,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NKS-FJ-MPQ">
-                                                    <rect key="frame" x="8" y="23" width="428" height="59"/>
+                                                    <rect key="frame" x="8" y="23" width="400" height="28"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -135,8 +135,8 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="nEu-9O-0ZS" firstAttribute="top" secondItem="eXD-xb-aDU" secondAttribute="top" constant="8" id="JN8-bV-bpZ"/>
-                                                <constraint firstAttribute="bottom" secondItem="NKS-FJ-MPQ" secondAttribute="bottom" constant="7" id="Uma-la-esW"/>
-                                                <constraint firstAttribute="trailing" secondItem="NKS-FJ-MPQ" secondAttribute="trailing" constant="164" id="cUH-SD-deF"/>
+                                                <constraint firstAttribute="bottom" secondItem="NKS-FJ-MPQ" secondAttribute="bottom" constant="8.5" id="Uma-la-esW"/>
+                                                <constraint firstAttribute="trailing" secondItem="NKS-FJ-MPQ" secondAttribute="trailing" constant="192" id="cUH-SD-deF"/>
                                                 <constraint firstItem="NKS-FJ-MPQ" firstAttribute="top" secondItem="nEu-9O-0ZS" secondAttribute="bottom" constant="3" id="fPY-Kk-b7V"/>
                                                 <constraint firstItem="NKS-FJ-MPQ" firstAttribute="top" secondItem="nEu-9O-0ZS" secondAttribute="bottom" constant="3" id="nn4-PG-OKb"/>
                                                 <constraint firstItem="nEu-9O-0ZS" firstAttribute="leading" secondItem="eXD-xb-aDU" secondAttribute="leading" constant="8" id="oac-RR-BDd"/>
