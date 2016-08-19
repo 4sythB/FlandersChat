@@ -76,13 +76,18 @@ class ThreadDetailViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBAction func sendMessagButtonTapped(sender: AnyObject) {
         if messageTextField.text?.characters.count > 0 {
-            createMessage()
+            createMessage({
+                guard let thread = self.thread else { return }
+                self.tableView.reloadData()
+                let indexPath = NSIndexPath(forRow: thread.messages.count - 1, inSection: 0)
+                self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Bottom, animated: true)
+            })
         }
     }
     
     // MARK: - Helper functions
     
-    func createMessage() {
+    func createMessage(completion: (() -> Void)? = nil ) {
         guard let messageText = messageTextField.text,
             currentUserRecordID = UserController.sharedController.currentUserReference?.recordID,
             thread = thread,
@@ -98,7 +103,7 @@ class ThreadDetailViewController: UIViewController, UITableViewDelegate, UITable
                 dispatch_async(dispatch_get_main_queue()) {
                     self.messageTextField.text = ""
                     thread.messages.append(message)
-                    
+                    completion?()
                 }
             }
         }

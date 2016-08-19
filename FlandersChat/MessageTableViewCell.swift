@@ -38,6 +38,13 @@ class MessageTableViewCell: UITableViewCell {
             messageLabel.textColor = UIColor.whiteColor()
             messageLabel.textAlignment = .Right
             senderLabel.textAlignment = .Right
+        } else if message.sender != UserController.sharedController.currentUserReference {
+            messageLabelTrailingConstraint.constant = 164
+            messageLabelLeadingConstraint.constant = 8
+            messageLabel.backgroundColor = UIColor.lightGrayColor()
+            messageLabel.textColor = UIColor.blackColor()
+            messageLabel.textAlignment = .Left
+            senderLabel.textAlignment = .Left
         }
         
         guard let sender = message.senderUser else { return }
