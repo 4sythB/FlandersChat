@@ -58,9 +58,11 @@ class UserController {
         cloudKitManager.fetchLoggedInUserRecord { (record, error) in
             guard let record = record else { completion(success: false); return }
             self.currentUserRecordID = record.recordID
-
-            let reference = CKReference(recordID: record.recordID, action: .None)
-            let predicate = NSPredicate(format: "reference == %@", argumentArray: [reference])
+            
+            let recordID = record.recordID
+            print("\(recordID)")
+            
+            let predicate = NSPredicate(format: "reference == %@", recordID)
             
             self.cloudKitManager.fetchRecordsWithType(User.recordTypeKey, predicate: predicate, recordFetchedBlock: { (record) in
                 self.currentUserRecordID = record.recordID
@@ -72,8 +74,11 @@ class UserController {
                 if error != nil {
                     print("Error fetching current user record: \(error?.localizedDescription)")
                     completion(success: false)
+                } else if records?.count == 0 {
+                    completion(success: false)
+                } else if records?.count > 0 {
+                    completion(success: true)
                 }
-                completion(success: true)
             }
         }
     }

@@ -207,6 +207,7 @@
                         <outlet property="messageTextField" destination="qTw-HM-qrF" id="EMA-Ab-Hmb"/>
                         <outlet property="sendButton" destination="KLg-tg-gWj" id="SyF-sJ-TWl"/>
                         <outlet property="tableView" destination="dXO-bc-ium" id="BhY-pS-nxV"/>
+                        <outlet property="toolbarBottomConstraint" destination="4oa-eX-o8p" id="qXy-th-YCn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mca-ly-Fky" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -14,6 +14,7 @@ class ThreadDetailViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageTextField: UITextField!
     @IBOutlet weak var sendButton: UIBarButtonItem!
+    @IBOutlet weak var toolbarBottomConstraint: NSLayoutConstraint!
     
     var thread: Thread?
     var users: [CKReference] = []
