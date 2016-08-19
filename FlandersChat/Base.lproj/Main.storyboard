@@ -205,6 +205,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="messageTextField" destination="qTw-HM-qrF" id="EMA-Ab-Hmb"/>
+                        <outlet property="messageToolbar" destination="ZDX-pk-99q" id="efZ-nm-bWt"/>
                         <outlet property="sendButton" destination="KLg-tg-gWj" id="SyF-sJ-TWl"/>
                         <outlet property="tableView" destination="dXO-bc-ium" id="BhY-pS-nxV"/>
                         <outlet property="toolbarBottomConstraint" destination="4oa-eX-o8p" id="qXy-th-YCn"/>

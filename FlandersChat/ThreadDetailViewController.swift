@@ -9,18 +9,28 @@
 import UIKit
 import CloudKit
 
-class ThreadDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ThreadDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageTextField: UITextField!
     @IBOutlet weak var sendButton: UIBarButtonItem!
     @IBOutlet weak var toolbarBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var messageToolbar: UIToolbar!
+    
+    var toolbarBottomConstraintInitialValue: CGFloat = 0
     
     var thread: Thread?
     var users: [CKReference] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        messageTextField.delegate = self
+        
+        enableKeyboardHideOnTap()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShow), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(messagesWereUpdated), name: "messageAdded", object: nil)
         
@@ -95,14 +105,48 @@ class ThreadDetailViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    // MARK: - Keyboard
     
+    func keyboardWillShow(notification: NSNotification) {
+        
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            guard let duration = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double else { return }
+            UIView.animateWithDuration(duration, animations: { 
+                if self.toolbarBottomConstraint.constant == 0 {
+                    self.toolbarBottomConstraint.constant += keyboardSize.height
+                }
+            })
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            guard let duration = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double else { return }
+            UIView.animateWithDuration(duration, animations: {
+                if self.toolbarBottomConstraint.constant != 0 {
+                    self.toolbarBottomConstraint.constant -= keyboardSize.height
+                }
+            })
+        }
+    }
+    
+    private func enableKeyboardHideOnTap(){
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        self.view.addGestureRecognizer(tap)
+    }
+    
+    func hideKeyboard() {
+        self.view.endEditing(true)
+    }
 }
+
+
+
+
+
+
+
+
+
+

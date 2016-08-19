@@ -60,7 +60,6 @@ class UserController {
             self.currentUserRecordID = record.recordID
             
             let recordID = record.recordID
-            print("\(recordID)")
             
             let predicate = NSPredicate(format: "reference == %@", recordID)
             
