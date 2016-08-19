@@ -45,5 +45,8 @@ class MessageTableViewCell: UITableViewCell {
         
         senderLabel.text = senderName
         messageLabel.text = message.text
+        
+        messageLabel.layer.masksToBounds = true
+        messageLabel.layer.cornerRadius = 6.0
     }
 }
