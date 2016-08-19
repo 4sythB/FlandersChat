@@ -40,9 +40,9 @@ class ThreadController {
         }
     }
     
-    func fetchThreadsForCurrentUser(completion: () -> Void) {
+    func fetchThreadsForCurrentUser(completion: (threads: [Thread]?) -> Void) {
         
-        guard let reference = UserController.sharedController.currentUserReference else { completion(); return }
+        guard let reference = UserController.sharedController.currentUserReference else { completion(threads: []); return }
         let predicate = NSPredicate(format: "users CONTAINS %@", reference)
         
         cloudKitManager.fetchRecordsWithType(Thread.recordTypeKey, predicate: predicate, recordFetchedBlock: { (record) in
@@ -50,19 +50,21 @@ class ThreadController {
         }) { (records, error) in
             if error != nil {
                 print("Error fetching threads for current user: \(error?.localizedDescription)")
-                completion()
+                completion(threads: [])
             } else {
                 dispatch_async(dispatch_get_main_queue()) {
                     guard let records = records else {
                         print("Records are nil")
-                        completion()
+                        completion(threads: [])
                         return
                     }
+                    var threadsArray: [Thread] = []
                     for record in records {
-                        guard let thread = Thread(record: record) else { completion(); return }
+                        guard let thread = Thread(record: record) else { completion(threads: []); return }
                         self.threads.append(thread)
+                        threadsArray.append(thread)
                     }
-                    completion()
+                    completion(threads: threadsArray)
                 }
             }
         }

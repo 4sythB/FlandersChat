@@ -24,9 +24,12 @@ class ThreadListTableViewController: UITableViewController {
                     //
                 })
             } else {
-                ThreadController.sharedController.fetchThreadsForCurrentUser({
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.tableView.reloadData()
+                ThreadController.sharedController.fetchThreadsForCurrentUser({ (threads) in
+                    guard let threads = threads else { return }
+                    for thread in threads {
+                        self.updateLabel(thread, completion: {
+                            self.tableView.reloadData()
+                        })
                     }
                 })
             }
@@ -43,32 +46,35 @@ class ThreadListTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("threadCell", forIndexPath: indexPath)
         let thread = ThreadController.sharedController.threads[indexPath.row]
+        cell.textLabel?.text = thread.userz.first?.firstName
         
-        updateLabel(thread) { (name) in
-            dispatch_async(dispatch_get_main_queue()) {
-                guard let name = name else { return }
-                cell.textLabel?.text = name
-            }
-        }
         return cell
     }
     
-    func updateLabel(thread: Thread, completion: ((name: String?) -> Void)? = nil) {
+    func updateLabel(thread: Thread, completion: (() -> Void)? = nil) {
         
         for user in thread.users {
             let predicate = NSPredicate(format: "recordID == %@", user.recordID)
             cloudKitManager.fetchRecordsWithType(User.recordTypeKey, predicate: predicate, recordFetchedBlock: { (record) in
-                guard let user = User(record: record) else {
-                    print("Unable to fetch record for user")
-                    guard let completion = completion else { return }
-                    completion(name: nil)
-                    return
-                }
-                UserController.sharedController.users.append(user)
-                guard let completion = completion else { return }
-                    completion(name: "\(user.firstName) \(user.lastName)")
+//                guard let user = User(record: record) else {
+//                    print("Unable to fetch record for user")
+//                    guard let completion = completion else { return }
+//                    completion()
+//                    return
+//                }
+//                UserController.sharedController.users.append(user)
+//                guard let completion = completion else { return }
+//                    completion(name: "\(user.firstName) \(user.lastName)")
                 }, completion: { (records, error) in
-                    //
+                    guard let userRecords = records else { return }
+                    for userRecord in userRecords {
+                        if userRecord.recordID != UserController.sharedController.currentUserRecordID {
+                            guard let user = User(record: userRecord) else { return }
+                            thread.userz.append(user)
+                            guard let completion = completion else { return }
+                            completion()
+                        }
+                    }
             })
         }
     }
