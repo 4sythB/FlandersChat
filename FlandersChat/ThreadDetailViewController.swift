@@ -13,9 +13,10 @@ class ThreadDetailViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageTextField: UITextField!
-    @IBOutlet weak var sendButton: UIBarButtonItem!
-    @IBOutlet weak var toolbarBottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var messageToolbar: UIToolbar!
+    @IBOutlet weak var sendButton: UIButton!
+    @IBOutlet weak var toolbarView: UIView!
+    @IBOutlet weak var toolbarViewBottomConstraint: NSLayoutConstraint!
+
     
     var toolbarBottomConstraintInitialValue: CGFloat = 0
     
@@ -116,8 +117,8 @@ class ThreadDetailViewController: UIViewController, UITableViewDelegate, UITable
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
             guard let duration = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double else { return }
             UIView.animateWithDuration(duration, animations: { 
-                if self.toolbarBottomConstraint.constant == 0 {
-                    self.toolbarBottomConstraint.constant += keyboardSize.height
+                if self.toolbarViewBottomConstraint.constant == 0 {
+                    self.toolbarViewBottomConstraint.constant += keyboardSize.height
                 }
             })
         }
@@ -127,8 +128,8 @@ class ThreadDetailViewController: UIViewController, UITableViewDelegate, UITable
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
             guard let duration = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double else { return }
             UIView.animateWithDuration(duration, animations: {
-                if self.toolbarBottomConstraint.constant != 0 {
-                    self.toolbarBottomConstraint.constant -= keyboardSize.height
+                if self.toolbarViewBottomConstraint.constant != 0 {
+                    self.toolbarViewBottomConstraint.constant -= keyboardSize.height
                 }
             })
         }
