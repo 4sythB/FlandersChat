@@ -20,6 +20,8 @@ class ThreadController {
     }
     var usersInThreads: [User] = []
     
+    // MARK: - Create new thread
+    
     func createNewThread(users: [CKReference], completion: (thread: Thread) -> Void) {
         
         let thread = Thread(users: users)
@@ -41,6 +43,8 @@ class ThreadController {
     init() {
         subscribeToNewThreads()
     }
+    
+    // MARK: - Fetch from CloudKit
     
     func fetchThreadsForCurrentUser(completion: (threads: [Thread]?) -> Void) {
         

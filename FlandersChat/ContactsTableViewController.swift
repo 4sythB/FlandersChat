@@ -69,6 +69,12 @@ class ContactsTableViewController: UITableViewController {
                 users.append(user)
             }
             
+            guard let currentUserReference = UserController.sharedController.currentUserReference else {
+                print("Unable to create current user reference to add to thread.")
+                return
+            }
+            usersReferences.append(currentUserReference)
+            
             for user in users {
                 guard let userRecord = user.record else {
                     return
