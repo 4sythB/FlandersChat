@@ -70,9 +70,21 @@ class ThreadController {
         }
     }
     
-    // TODO: - Make this func instead of in the cellForRow
-    func fetchUsersInThread(thread: Thread, completion: () -> Void) {
+    func fetchUsersInThread(thread: Thread, completion: (() -> Void)? = nil) {
         
+        for user in thread.users {
+            cloudKitManager.fetchRecordWithID(user.recordID, completion: { (record, error) in
+                if error != nil {
+                    print("Error fetching users for thread: \(error?.localizedDescription)")
+                    completion?()
+                } else {
+                    guard let userRecord = record,
+                        fetchedUser = User(record: userRecord) else { completion?(); return }
+                    thread.userz.append(fetchedUser)
+                    completion?()
+                }
+            })
+        }
     }
 }
 

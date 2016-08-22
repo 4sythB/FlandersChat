@@ -27,8 +27,10 @@ class ThreadListTableViewController: UITableViewController {
                 ThreadController.sharedController.fetchThreadsForCurrentUser({ (threads) in
                     guard let threads = threads else { return }
                     for thread in threads {
-                        self.updateLabel(thread, completion: {
-                            self.tableView.reloadData()
+                        ThreadController.sharedController.fetchUsersInThread(thread, completion: {
+                            dispatch_async(dispatch_get_main_queue()) {
+                                self.tableView.reloadData()
+                            }
                         })
                     }
                 })
@@ -49,34 +51,6 @@ class ThreadListTableViewController: UITableViewController {
         cell.textLabel?.text = thread.userz.first?.firstName
         
         return cell
-    }
-    
-    func updateLabel(thread: Thread, completion: (() -> Void)? = nil) {
-        
-        for user in thread.users {
-            let predicate = NSPredicate(format: "recordID == %@", user.recordID)
-            cloudKitManager.fetchRecordsWithType(User.recordTypeKey, predicate: predicate, recordFetchedBlock: { (record) in
-//                guard let user = User(record: record) else {
-//                    print("Unable to fetch record for user")
-//                    guard let completion = completion else { return }
-//                    completion()
-//                    return
-//                }
-//                UserController.sharedController.users.append(user)
-//                guard let completion = completion else { return }
-//                    completion(name: "\(user.firstName) \(user.lastName)")
-                }, completion: { (records, error) in
-                    guard let userRecords = records else { return }
-                    for userRecord in userRecords {
-                        if userRecord.recordID != UserController.sharedController.currentUserRecordID {
-                            guard let user = User(record: userRecord) else { return }
-                            thread.userz.append(user)
-                            guard let completion = completion else { return }
-                            completion()
-                        }
-                    }
-            })
-        }
     }
     
     /*
