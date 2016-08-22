@@ -21,12 +21,13 @@ class ThreadDetailViewController: UIViewController, UITableViewDelegate, UITable
     var toolbarBottomConstraintInitialValue: CGFloat = 0
     
     var thread: Thread?
-    var users: [CKReference] = []
     
     var cellCount = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setNavBarTitle()
         
         tableView.estimatedRowHeight = 60
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -67,6 +68,18 @@ class ThreadDetailViewController: UIViewController, UITableViewDelegate, UITable
                 let indexPath = NSIndexPath(forRow: thread.messages.count - 1, inSection: 0)
                 self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Bottom, animated: true)
             }
+        }
+    }
+    
+    func setNavBarTitle() {
+        guard let thread = thread else { return }
+        let userz: [User] = thread.userz
+        if userz.count > 1 {
+            navigationItem.title = "Group"
+        } else if userz.count == 1 {
+            let usersNames = userz.flatMap({ $0.firstName })
+            let userNameString = usersNames.joinWithSeparator("")
+            navigationItem.title = userNameString
         }
     }
     

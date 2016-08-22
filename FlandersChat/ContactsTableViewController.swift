@@ -86,7 +86,6 @@ class ContactsTableViewController: UITableViewController {
             ThreadController.sharedController.createNewThread(usersReferences, completion: { (thread) in
                 ThreadController.sharedController.subscribeToThreadMessages(thread, alertBody: "You have a new message")
                 destinationVC.thread = thread
-                destinationVC.users = usersReferences
             })
         }
     }
