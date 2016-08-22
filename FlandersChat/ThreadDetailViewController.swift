@@ -23,6 +23,8 @@ class ThreadDetailViewController: UIViewController, UITableViewDelegate, UITable
     var thread: Thread?
     var users: [CKReference] = []
     
+    var cellCount = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,7 +42,7 @@ class ThreadDetailViewController: UIViewController, UITableViewDelegate, UITable
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(messagesWereUpdated), name: "messageAdded", object: nil)
         
         guard let thread = thread else { return }
-
+        
         thread.messages = []
         MessagesController.sharedController.fetchMessages(thread) {
             // Fetch users for each message/assign the user to that message
@@ -60,12 +62,17 @@ class ThreadDetailViewController: UIViewController, UITableViewDelegate, UITable
     func messagesWereUpdated() {
         dispatch_async(dispatch_get_main_queue()) {
             self.tableView.reloadData()
+            guard let thread = self.thread else { return }
+            if thread.messages.count > 0 {
+                let indexPath = NSIndexPath(forRow: thread.messages.count - 1, inSection: 0)
+                self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Bottom, animated: true)
+            }
         }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let thread = thread  else { return 0 }
-        return thread.messages.count
+        return thread.sortedMessages.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -104,7 +111,7 @@ class ThreadDetailViewController: UIViewController, UITableViewDelegate, UITable
         
         let message = Message(text: messageText, sender: sender, thread: threadReference)
         
-        MessagesController.sharedController.fetchSenderForMessage(message) { 
+        MessagesController.sharedController.fetchSenderForMessage(message) {
             MessagesController.sharedController.saveMessage(message) {
                 dispatch_async(dispatch_get_main_queue()) {
                     self.messageTextField.text = ""
@@ -121,7 +128,7 @@ class ThreadDetailViewController: UIViewController, UITableViewDelegate, UITable
         
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
             guard let duration = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double else { return }
-            UIView.animateWithDuration(duration, animations: { 
+            UIView.animateWithDuration(duration, animations: {
                 if self.toolbarViewBottomConstraint.constant == 0 {
                     self.toolbarViewBottomConstraint.constant += keyboardSize.height
                     self.tableViewBottomConstraint.constant += keyboardSize.height

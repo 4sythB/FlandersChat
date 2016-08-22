@@ -29,38 +29,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
         
-        guard let userInfo = userInfo as? [String : NSObject],
-            threadRecordIDString = userInfo["ck"]?.valueForKey("qry")?.valueForKey("af")?.valueForKey("thread") as? String else { return }
-        let threadRecordID = CKRecordID(recordName: threadRecordIDString)
+        guard let userInfo = userInfo as? [String : NSObject] else { return }
+        let queryNotification = CKQueryNotification(fromRemoteNotificationDictionary: userInfo)
         
-        for thread in ThreadController.sharedController.sortedThreads {
-            if thread.threadRecordID != threadRecordID {
-                cloudKitManager.fetchRecordWithID(threadRecordID, completion: { (record, error) in
-                    guard let record = record else {
-                        print("Unable to fetch recordID from CKRecord")
-                        return
-                    }
-                    switch record.recordType {
-                    case Thread.recordTypeKey:
-                        guard let _ = Thread(record: record) else { return }
-                        return
-                    case Message.recordTypeKey:
-                        guard let _ = Message(record: record) else { return }
-                        return
-                    default:
-                        return
-                    }
+        guard let recordID = queryNotification.recordID else { return }
+        
+        cloudKitManager.fetchRecordWithID(recordID) { (record, error) in
+            guard let record = record,
+            message = Message(record: record) else { return }
+            let threadRecordID = message.thread.recordID
+            
+            MessagesController.sharedController.fetchSenderForMessage(message, completion: { 
+                self.cloudKitManager.fetchRecordWithID(threadRecordID, completion: { (record, error) in
+                    guard let threadRecord = record,
+                        thread = ThreadController.sharedController.threads.filter({$0.threadRecordID == threadRecord.recordID}).first else { return }
+                    thread.messages.append(message)
                 })
-            } else {
-                cloudKitManager.fetchRecordWithID(threadRecordID, completion: { (record, error) in
-                    guard let record = record else { return }
-                    if record.recordType == Message.recordTypeKey {
-                        guard let message = Message(record: record) else { return }
-                        thread.messages.append(message)
-                        return
-                    }
-                })
-            }
+            })
         }
         completionHandler(UIBackgroundFetchResult.NewData)
     }

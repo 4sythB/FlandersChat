@@ -19,7 +19,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WBd-UO-ZiY" id="YCC-14-UzT">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
@@ -106,14 +106,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dXO-bc-ium">
-                                <rect key="frame" x="0.0" y="64" width="600" height="444"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="508"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="messageCell" rowHeight="60" id="QMg-uU-L19" customClass="MessageTableViewCell" customModule="FlandersChat" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="92" width="600" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QMg-uU-L19" id="eXD-xb-aDU">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sender" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nEu-9O-0ZS">
@@ -219,7 +219,7 @@
                             <constraint firstItem="trc-wZ-rgl" firstAttribute="leading" secondItem="7M2-bP-XiJ" secondAttribute="leading" id="J2l-Rw-3IW"/>
                             <constraint firstItem="iUP-Pr-Vql" firstAttribute="top" secondItem="dXO-bc-ium" secondAttribute="bottom" constant="48" id="SzR-MB-Zkt"/>
                             <constraint firstAttribute="bottom" secondItem="trc-wZ-rgl" secondAttribute="bottom" id="VZx-ce-RJn"/>
-                            <constraint firstItem="dXO-bc-ium" firstAttribute="top" secondItem="Aog-dT-HrV" secondAttribute="bottom" id="hMt-kl-G4g"/>
+                            <constraint firstItem="dXO-bc-ium" firstAttribute="top" secondItem="Aog-dT-HrV" secondAttribute="bottom" constant="-64" id="hMt-kl-G4g"/>
                             <constraint firstAttribute="trailing" secondItem="dXO-bc-ium" secondAttribute="trailing" id="iI4-7q-acn"/>
                             <constraint firstAttribute="trailing" secondItem="trc-wZ-rgl" secondAttribute="trailing" id="lXW-Zo-DH7"/>
                             <constraint firstItem="dXO-bc-ium" firstAttribute="leading" secondItem="7M2-bP-XiJ" secondAttribute="leading" id="sPJ-qo-h4F"/>
