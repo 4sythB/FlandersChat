@@ -54,7 +54,7 @@ class MessageTableViewCell: UITableViewCell {
         messageLabel.text = message.text
         
         messageLabel.layer.masksToBounds = true
-        messageLabel.layer.cornerRadius = 6.0
+        messageLabel.layer.cornerRadius = 8.0
     }
 }
 

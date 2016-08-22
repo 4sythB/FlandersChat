@@ -78,10 +78,12 @@ class ThreadController {
                     print("Error fetching users for thread: \(error?.localizedDescription)")
                     completion?()
                 } else {
-                    guard let userRecord = record,
-                        fetchedUser = User(record: userRecord) else { completion?(); return }
-                    thread.userz.append(fetchedUser)
-                    completion?()
+                    guard let userRecord = record else { completion?(); return }
+                    if userRecord.recordID != UserController.sharedController.currentUserRecordID {
+                        guard let fetchedUser = User(record: userRecord) else { completion?(); return }
+                        thread.userz.append(fetchedUser)
+                        completion?()
+                    }
                 }
             })
         }
