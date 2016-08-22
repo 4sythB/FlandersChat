@@ -131,10 +131,12 @@ class ThreadDetailViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func keyboardDidShow(notification: NSNotification) {
-        guard let thread = self.thread else { return }
-        self.tableView.reloadData()
-        let indexPath = NSIndexPath(forRow: thread.messages.count - 1, inSection: 0)
-        self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Bottom, animated: true)
+        if thread?.messages.count > 0 {
+            guard let thread = self.thread else { return }
+            self.tableView.reloadData()
+            let indexPath = NSIndexPath(forRow: thread.messages.count - 1, inSection: 0)
+            self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Bottom, animated: true)
+        }
     }
     
     func keyboardWillHide(notification: NSNotification) {

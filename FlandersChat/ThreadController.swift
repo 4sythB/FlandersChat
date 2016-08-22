@@ -14,12 +14,10 @@ class ThreadController {
     static let sharedController = ThreadController()
     let cloudKitManager = CloudKitManager()
     
-    var threads: [Thread] = [] {
-        didSet {
-            //
-        }
+    var threads: [Thread] = []
+    var sortedThreads: [Thread] {
+        return threads.sort({ $0.sortedMessages.last?.timestamp.timeIntervalSince1970 > $1.sortedMessages.last?.timestamp.timeIntervalSince1970 })
     }
-    
     var usersInThreads: [User] = []
     
     func createNewThread(users: [CKReference], completion: (thread: Thread) -> Void) {
@@ -38,6 +36,10 @@ class ThreadController {
             thread.threadRecordID = record.recordID
             completion(thread: thread)
         }
+    }
+    
+    init() {
+        subscribeToNewThreads()
     }
     
     func fetchThreadsForCurrentUser(completion: (threads: [Thread]?) -> Void) {
@@ -86,6 +88,50 @@ class ThreadController {
                     }
                 }
             })
+        }
+    }
+    
+    // MARK: - Subscriptions
+    
+    func subscribeToNewThreads(completion: ((success: Bool, error: NSError?) -> Void)? = nil) {
+        
+        guard let currentUserID = UserController.sharedController.currentUserRecordID else { return }
+        
+        let predicate = NSPredicate(format: "users CONTAINS %@", currentUserID)
+        
+        cloudKitManager.subscribe(Thread.recordTypeKey, predicate: predicate, subscriptionID: "all messages", contentAvailable: true, options: .FiresOnRecordCreation) { (subscription, error) in
+            if error != nil {
+                print("Error subscribing to thread: \(error?.localizedDescription)")
+                if let completion = completion {
+                    completion(success: false, error: error)
+                }
+            } else {
+                if let completion = completion {
+                    let success = subscription != nil
+                    completion(success: success, error: error)
+                }
+            }
+        }
+    }
+    
+    func subscribeToThreadMessages(thread: Thread, alertBody: String?, completion: ((sucess: Bool, error: NSError?) -> Void)? = nil) {
+        
+        guard let recordID = thread.threadRecordID else { fatalError("Unable to create CloudKit reference for subscription.") }
+        
+        let predicate = NSPredicate(format: "thread == %@", recordID)
+        
+        cloudKitManager.subscribe(Message.recordTypeKey, predicate: predicate, subscriptionID: recordID.recordName, contentAvailable: true, alertBody: alertBody, desiredKeys: [Message.textKey, Message.threadKey], options: .FiresOnRecordCreation) { (subscription, error) in
+            if error != nil {
+                print("Error subscribing to comments in thread \(thread.threadRecordID): \(error?.localizedDescription)")
+                if let completion = completion {
+                    completion(sucess: false, error: error)
+                }
+            } else {
+                if let completion = completion {
+                    let success = subscription != nil
+                    completion(sucess: success, error: error)
+                }
+            }
         }
     }
 }

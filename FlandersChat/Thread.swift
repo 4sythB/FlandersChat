@@ -17,6 +17,7 @@ class Thread {
     static let recordIDKey = "ckRecordID"
     
     var users: [CKReference]
+    var userz: [User] = []
     var threadRecordID: CKRecordID?
     var messages: [Message] = [] {
         didSet {
@@ -27,9 +28,6 @@ class Thread {
         let sortedArray = messages.sort({ $0.timestamp.timeIntervalSince1970 < $1.timestamp.timeIntervalSince1970 })
         return sortedArray
     }
-    
-    
-    var userz: [User] = []   // Maybe delete this line //
     
     var cloudKitRecord: CKRecord {
         let record = CKRecord(recordType: Thread.recordTypeKey)

@@ -42,12 +42,12 @@ class ThreadListTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return ThreadController.sharedController.threads.count
+        return ThreadController.sharedController.sortedThreads.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("threadCell", forIndexPath: indexPath)
-        let thread = ThreadController.sharedController.threads[indexPath.row]
+        let thread = ThreadController.sharedController.sortedThreads[indexPath.row]
         cell.textLabel?.text = thread.userz.first?.firstName
         
         return cell
