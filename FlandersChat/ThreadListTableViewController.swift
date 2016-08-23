@@ -48,7 +48,8 @@ class ThreadListTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("threadCell", forIndexPath: indexPath)
         let thread = ThreadController.sharedController.sortedThreads[indexPath.row]
-        cell.textLabel?.text = thread.userz.first?.firstName
+        guard let user = thread.userz.first else { return UITableViewCell() }
+        cell.textLabel?.text = user.firstName + " " + user.lastName
         
         return cell
     }

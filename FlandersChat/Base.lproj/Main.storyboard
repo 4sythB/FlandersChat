@@ -117,7 +117,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="aYW-3N-Kh2">
-                                                    <rect key="frame" x="8" y="8" width="584" height="43.5"/>
+                                                    <rect key="frame" x="8" y="6" width="584" height="53.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sender" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nEu-9O-0ZS">
                                                             <rect key="frame" x="0.0" y="0.0" width="584" height="12"/>
@@ -135,10 +135,10 @@
                                                             </variation>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uAa-8q-Mfo">
-                                                            <rect key="frame" x="0.0" y="12" width="584" height="31.5"/>
+                                                            <rect key="frame" x="0.0" y="12" width="584" height="41.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NKS-FJ-MPQ">
-                                                                    <rect key="frame" x="8" y="6" width="568" height="19.5"/>
+                                                                    <rect key="frame" x="8" y="6" width="568" height="29.5"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -170,8 +170,8 @@
                                                 </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="aYW-3N-Kh2" firstAttribute="top" secondItem="eXD-xb-aDU" secondAttribute="topMargin" id="Mck-UI-7XD"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="aYW-3N-Kh2" secondAttribute="bottom" id="SZo-hu-1UV"/>
+                                                <constraint firstItem="aYW-3N-Kh2" firstAttribute="top" secondItem="eXD-xb-aDU" secondAttribute="topMargin" constant="-2" id="Mck-UI-7XD"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="aYW-3N-Kh2" secondAttribute="bottom" constant="-8" id="SZo-hu-1UV"/>
                                                 <constraint firstItem="aYW-3N-Kh2" firstAttribute="leading" secondItem="eXD-xb-aDU" secondAttribute="leadingMargin" id="cbr-8C-knm"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="aYW-3N-Kh2" secondAttribute="trailing" id="plq-lV-LOw"/>
                                             </constraints>

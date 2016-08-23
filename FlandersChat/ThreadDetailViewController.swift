@@ -77,9 +77,14 @@ class ThreadDetailViewController: UIViewController, UITableViewDelegate, UITable
         if userz.count > 1 {
             navigationItem.title = "Group"
         } else if userz.count == 1 {
-            let usersNames = userz.flatMap({ $0.firstName })
-            let userNameString = usersNames.joinWithSeparator("")
-            navigationItem.title = userNameString
+            let usersFirstName = userz.flatMap({ "\($0.firstName) " })
+            let usersLastName = userz.flatMap({ $0.lastName })
+            let characters = usersLastName.flatMap({ $0.characters.first })
+            let string = characters.flatMap({ String($0) + "." })
+            let firstNameString = usersFirstName.joinWithSeparator("")
+            let lastNameString = string.joinWithSeparator("")
+            let nameString = firstNameString + lastNameString
+            navigationItem.title = nameString
         }
     }
     
